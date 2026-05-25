@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creatina Fit - Maximize Seus Resultados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIÁVEIS DE CORES --- */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-header: #ffffff;
+            --text-main: #0a0f1c; 
+            --text-p: #64748b;
+            --accent-color: #0a0f1c; 
+            --accent-text: #ffffff;
+            --highlight-text: #0a0f1c; 
+            --btn-secondary-bg: transparent;
+            --btn-secondary-border: #0a0f1c;
+            --btn-secondary-text: #0a0f1c;
+            --check-icon: #10b981; 
+            --card-bg: #ffffff;
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            --icon-color: #0a0f1c;
+            --border-color: #e2e8f0;
+            --faq-hover: #f1f5f9;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #11131a; 
+            --bg-header: #11131a;
+            --text-main: #ffffff;
+            --text-p: #94a3b8;
+            --accent-color: #4f6bff; 
+            --accent-text: #ffffff;
+            --highlight-text: #4f6bff; 
+            --btn-secondary-bg: transparent;
+            --btn-secondary-border: #4f6bff;
+            --btn-secondary-text: #4f6bff;
+            --card-bg: #1a1d27;
+            --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+            --icon-color: #ffffff;
+            --border-color: #2a2e3d;
+            --faq-hover: #222634;
+        }
+
+        /* --- GERAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-body); color: var(--text-main); transition: background-color 0.4s ease, color 0.4s ease; overflow-x: hidden; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 100px 0; }
+        
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; }
+        .section-subtitle { text-align: center; color: var(--text-p); font-size: 1.1rem; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- MENU DROPDOWN DE IDIOMAS --- */
+        .lang-wrapper { position: relative; }
+        .lang-menu {
+            position: absolute; top: 120%; right: 0; background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; box-shadow: var(--card-shadow); display: none; flex-direction: column; min-width: 150px;
+            z-index: 200; overflow: hidden; opacity: 0; transform: translateY(-10px); transition: opacity 0.2s, transform 0.2s;
+        }
+        .lang-menu.show { display: flex; opacity: 1; transform: translateY(0); }
+        .lang-menu button {
+            background: transparent; border: none; padding: 12px 16px; text-align: left; cursor: pointer;
+            color: var(--text-main); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: background 0.2s;
+        }
+        .lang-menu button:hover { background: var(--faq-hover); }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        .animate-fade-up { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
+
+        /* --- BOTÕES --- */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--accent-color); color: var(--accent-text); padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; border: none; transition: all 0.3s ease; }
+        .btn svg { fill: currentColor; transition: transform 0.3s ease; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px var(--accent-color); filter: brightness(1.1); }
+        .btn:hover svg { transform: translateX(4px); }
+        .btn-secondary { background-color: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 1.5px solid var(--btn-secondary-border); }
+        .btn-secondary:hover { background-color: var(--btn-secondary-border); color: var(--bg-body); box-shadow: none; }
+        .btn-sm { padding: 10px 20px; font-size: 0.9rem; border-radius: 6px; }
+
+        /* --- CABEÇALHO --- */
+        header { background-color: var(--bg-header); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); transition: background-color 0.4s ease, border-color 0.4s ease; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 800; }
+        .logo-area svg { fill: var(--highlight-text); transition: fill 0.4s ease; }
+        .nav-links { display: flex; gap: 32px; list-style: none; font-weight: 600; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--highlight-text); }
+        .controls { display: flex; align-items: center; gap: 12px; }
+        .icon-btn { background: transparent; border: 1px solid var(--border-color); border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--icon-color); transition: all 0.2s ease; }
+        .icon-btn:hover { border-color: var(--text-main); }
+        .icon-btn svg { fill: currentColor; }
+
+        /* --- HERO --- */
+        .hero { display: flex; align-items: center; padding-top: 60px; padding-bottom: 80px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 24px; }
+        .highlight { color: var(--highlight-text); transition: color 0.4s ease; }
+        .hero p { font-size: 1.15rem; color: var(--text-p); margin-bottom: 32px; max-width: 90%; }
+        .features-list { display: flex; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+        .feature-item { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem; }
+        .feature-item svg { fill: var(--check-icon); width: 20px; height: 20px; }
+        .hero-buttons { display: flex; gap: 16px; }
+        .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+        .floating-card { background-color: var(--card-bg); padding: 40px 50px; border-radius: 20px; box-shadow: var(--card-shadow); display: flex; align-items: center; gap: 24px; animation: float 6s ease-in-out infinite; border: 1px solid var(--border-color); transition: all 0.4s ease; }
+        .floating-card svg { width: 60px; height: 60px; fill: var(--highlight-text); transform: rotate(-15deg); }
+        .card-text { display: flex; flex-direction: column; }
+        .card-text strong { font-size: 3rem; font-weight: 800; line-height: 1; color: var(--highlight-text); }
+        .card-text span { font-size: 1rem; color: var(--text-p); font-weight: 500; }
+
+        /* --- COMPONENTES SECUNDÁRIOS --- */
+        .grid-benefits, .grid-testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .benefit-card, .testimonial-card { background-color: var(--card-bg); padding: 40px 30px; border-radius: 16px; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); transition: all 0.4s ease; }
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--highlight-text); }
+        .benefit-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: var(--highlight-text); }
+        .benefit-card p, .testimonial-text { color: var(--text-p); font-size: 1rem; }
+        .testimonial-text { font-style: italic; margin-bottom: 30px; font-size: 1.05rem; }
+        
+        .about { background-color: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .about-content p { font-size: 1.15rem; color: var(--text-p); margin-bottom: 24px; }
+        .nutrition-table { width: 100%; max-width: 500px; margin: 40px auto; border-collapse: collapse; background-color: var(--bg-body); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+        .nutrition-table th, .nutrition-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .nutrition-table th { font-weight: 700; color: var(--highlight-text); }
+        .nutrition-table td { color: var(--text-p); }
+        .table-note { font-size: 0.85rem; color: var(--text-p); margin-top: 8px; }
+
+        .user-info { display: flex; align-items: center; gap: 16px; }
+        .avatar { width: 48px; height: 48px; background-color: var(--highlight-text); color: var(--bg-body); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
+        .user-details h4 { font-size: 1rem; color: var(--text-main); }
+        .user-details span { font-size: 0.85rem; color: var(--text-p); }
+
+        .faq { background-color: var(--card-bg); border-top: 1px solid var(--border-color); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border: 1px solid var(--border-color); margin-bottom: 16px; border-radius: 12px; background-color: var(--bg-body); overflow: hidden; transition: all 0.3s ease; }
+        .faq-question { padding: 24px; width: 100%; text-align: left; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s; }
+        .faq-question:hover { background-color: var(--faq-hover); }
+        .faq-question::after { content: "+"; font-size: 1.5rem; color: var(--highlight-text); font-weight: 400; transition: transform 0.3s; }
+        .faq-item.active { border-color: var(--highlight-text); }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; color: var(--text-p); }
+        .faq-item.active .faq-answer { padding: 0 24px 24px 24px; max-height: 400px; }
+
+        .cta-final { text-align: center; }
+        .cta-final h2 { font-size: 2.5rem; margin-bottom: 24px; font-weight: 800; letter-spacing: -1px; }
+        .cta-final p { max-width: 600px; margin: 0 auto 40px auto; color: var(--text-p); font-size: 1.1rem; }
+
+        footer { background-color: var(--bg-header); border-top: 1px solid var(--border-color); padding-top: 80px; padding-bottom: 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-logo { font-size: 1.5rem; font-weight: 800; color: var(--highlight-text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;}
+        .footer-logo svg { fill: var(--highlight-text); }
+        .footer-about p { color: var(--text-p); max-width: 350px; }
+        .footer-links h4 { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-main); }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 12px; color: var(--text-p); }
+        .footer-links ul li a:hover { color: var(--highlight-text); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 30px; text-align: center; color: var(--text-p); font-size: 0.9rem; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { margin: 0 auto 32px auto; }
+            .features-list, .hero-buttons { justify-content: center; }
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-about p { margin: 0 auto; }
+            .footer-logo { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-buttons { flex-direction: column; }
+            .floating-card { padding: 30px; gap: 16px; }
+            .card-text strong { font-size: 2.2rem; }
+            .floating-card svg { width: 45px; height: 45px; }
+            /* Ajuste para caber botões no celular */
+            .controls .btn-sm { display: none; } /* Esconde o botão grande de comprar e deixa os ícones */
+            section { padding: 60px 0; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo-area">
+                <svg viewBox="0 0 24 24" width="28" height="28"><path d="M20.5 4.5l-1-1c-.8-.8-2-.8-2.8 0l-1 1-1.4-1.4c-.4-.4-1-.4-1.4 0l-1.4 1.4-4.2-4.2c-.8-.8-2-.8-2.8 0l-1 1c-.8.8-.8 2 0 2.8l1 1-2.6 2.6c-.4.4-.4 1 0 1.4l1.4 1.4-1.4 1.4c-.4.4-.4 1 0 1.4l1.4 1.4-2.6 2.6c-.8.8-.8 2 0 2.8l1 1c.8.8 2 .8 2.8 0l1-1 4.2 4.2c.4.4 1 .4 1.4 0l1.4-1.4 1.4 1.4c.4.4 1 .4 1.4 0l1.4-1.4 2.6-2.6l1 1c.8.8 2 .8 2.8 0l1-1c.8-.8.8-2 0-2.8l-1-1 2.6-2.6c.4-.4.4-1 0-1.4l-1.4-1.4 1.4-1.4c.4-.4.4-1 0-1.4l-1.4-1.4 2.6-2.6c.7-.7.7-1.9-.1-2.7zm-14 14l-1.4 1.4c-.4.4-1 .4-1.4 0l-1-1c-.4-.4-.4-1 0-1.4l1.4-1.4 2.4 2.4zm11-11L8.3 16.7l-1-1L16.5 6.5l1 1z"/></svg>
+                Creatina Fit
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#beneficios" data-i18n="nav_benefits">Benefícios</a></li>
+                <li><a href="#sobre" data-i18n="nav_about">Sobre</a></li>
+                <li><a href="#depoimentos" data-i18n="nav_test">Depoimentos</a></li>
+                <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+            </ul>
+
+            <div class="controls">
+                
+                <div class="lang-wrapper">
+                    <button class="icon-btn" id="lang-btn" title="Idioma">
+                        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-menu">
+                        <button data-lang="pt">🇧🇷 Português</button>
+                        <button data-lang="en">🇺🇸 English</button>
+                        <button data-lang="es">🇪🇸 Español</button>
+                    </div>
+                </div>
+                
+                <button class="icon-btn" id="theme-toggle" title="Mudar Tema">
+                    <svg id="moon-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    <svg id="sun-icon" viewBox="0 0 24 24" width="20" height="20" style="display:none;"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.758a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/></svg>
+                </button>
+
+                <a href="SEU_LINK_AMAZON" class="btn btn-sm">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    <span data-i18n="btn_buy_now">Comprar Agora</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="animate-fade-up" data-i18n="hero_title">Maximize Seus Resultados com <span class="highlight">Creatina</span></h1>
+                <p class="animate-fade-up delay-1" data-i18n="hero_desc">O suplemento mais estudado e comprovado cientificamente para ganho de massa muscular, força e performance.</p>
+                
+                <div class="features-list animate-fade-up delay-2">
+                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> <span data-i18n="feat_1">100% Pura</span></div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> <span data-i18n="feat_2">Resultados Comprovados</span></div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> <span data-i18n="feat_3">Entrega Rápida</span></div>
+                </div>
+
+                <div class="hero-buttons animate-fade-up delay-3">
+                    <a href="SEU_LINK_AMAZON" class="btn">
+                        <span data-i18n="btn_amazon">Comprar na Amazon</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </a>
+                    <a href="#beneficios" class="btn btn-secondary" data-i18n="btn_view_benefits">Ver Benefícios</a>
+                </div>
+            </div>
+
+            <div class="hero-visual animate-fade-up delay-4">
+                <div class="floating-card">
+                    <svg viewBox="0 0 24 24"><path d="M20.5 4.5l-1-1c-.8-.8-2-.8-2.8 0l-1 1-1.4-1.4c-.4-.4-1-.4-1.4 0l-1.4 1.4-4.2-4.2c-.8-.8-2-.8-2.8 0l-1 1c-.8.8-.8 2 0 2.8l1 1-2.6 2.6c-.4.4-.4 1 0 1.4l1.4 1.4-1.4 1.4c-.4.4-.4 1 0 1.4l1.4 1.4-2.6 2.6c-.8.8-.8 2 0 2.8l1 1c.8.8 2 .8 2.8 0l1-1 4.2 4.2c.4.4 1 .4 1.4 0l1.4-1.4 1.4 1.4c.4.4 1 .4 1.4 0l1.4-1.4 2.6-2.6l1 1c.8.8 2 .8 2.8 0l1-1c.8-.8.8-2 0-2.8l-1-1 2.6-2.6c.4-.4.4-1 0-1.4l-1.4-1.4 1.4-1.4c.4-.4.4-1 0-1.4l-1.4-1.4 2.6-2.6c.7-.7.7-1.9-.1-2.7zm-14 14l-1.4 1.4c-.4.4-1 .4-1.4 0l-1-1c-.4-.4-.4-1 0-1.4l1.4-1.4 2.4 2.4zm11-11L8.3 16.7l-1-1L16.5 6.5l1 1z"/></svg>
+                    <div class="card-text">
+                        <strong>+15%</strong>
+                        <span data-i18n="card_strength">Aumento de Força</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_ben_title">Benefícios da Creatina</h2>
+            <p class="section-subtitle" data-i18n="sec_ben_sub">Descubra como a creatina pode transformar seus treinos e resultados</p>
+            
+            <div class="grid-benefits">
+                <div class="benefit-card">
+                    <h3 data-i18n="ben_1_t">Ganho de Massa Muscular</h3>
+                    <p data-i18n="ben_1_d">A creatina aumenta a síntese de proteínas musculares, promovendo o crescimento e hipertrofia muscular de forma eficiente.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 data-i18n="ben_2_t">Aumento da Força</h3>
+                    <p data-i18n="ben_2_d">Melhora significativa na força e potência muscular, permitindo treinos mais intensos e resultados superiores.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 data-i18n="ben_3_t">Recuperação Rápida</h3>
+                    <p data-i18n="ben_3_d">Acelera a recuperação muscular pós-treino, reduzindo fadiga e permitindo treinar com mais frequência.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 data-i18n="ben_4_t">Energia para Treino</h3>
+                    <p data-i18n="ben_4_d">Fornece energia ATP adicional para exercícios de alta intensidade, maximizando seu desempenho.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 data-i18n="ben_5_t">Performance Aprimorada</h3>
+                    <p data-i18n="ben_5_d">Estudos comprovam melhora de até 15% no desempenho físico em exercícios de explosão e força.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 data-i18n="ben_6_t">Saúde Cognitiva</h3>
+                    <p data-i18n="ben_6_d">Benefícios para função cerebral, memória e concentração, além dos ganhos físicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="container about-content">
+            <h2 class="section-title" data-i18n="about_title">O Que É Creatina?</h2>
+            <p data-i18n="about_p1">A creatina é um aminoácido natural produzido pelo corpo humano e armazenado principalmente nos músculos. É fundamental para a produção de ATP (adenosina trifosfato), a principal fonte de energia celular.</p>
+            <p data-i18n="about_p2">Mais de 1.000 estudos científicos comprovam a eficácia e segurança da creatina. É reconhecida por organizações como a International Society of Sports Nutrition como um dos suplementos mais eficazes para ganho de massa muscular e força.</p>
+            <p data-i18n="about_p3">Ideal para praticantes de musculação, crossfit, atletas de alta performance e qualquer pessoa que busca melhorar seus resultados na academia.</p>
+            
+            <h3 style="margin-top: 50px; font-size: 1.8rem; color: var(--highlight-text);" data-i18n="nutri_title">Informações Nutricionais</h3>
+            <p style="font-size: 0.95rem;" data-i18n="nutri_portion">Porção: 5g</p>
+            
+            <table class="nutrition-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="nutri_h1">Nutriente</th>
+                        <th data-i18n="nutri_h2">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-i18n="nutri_v1">Creatina Monohidratada</td>
+                        <td>5g</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="table-note" data-i18n="nutri_note">** Valor diário não estabelecido</p>
+            
+            <a href="SEU_LINK_AMAZON" class="btn" style="margin-top: 30px;" data-i18n="btn_guarantee">Garantir Meu Produto</a>
+        </div>
+    </section>
+
+    <section id="depoimentos">
+        <div class="container">
+            <h2 class="section-title" data-i18n="test_title">O Que Nossos Clientes Dizem</h2>
+            <p class="section-subtitle" data-i18n="test_sub">Resultados reais de pessoas reais</p>
+            
+            <div class="grid-testimonials">
+                <div class="testimonial-card">
+                    <p class="testimonial-text" data-i18n="test_1_t">"Desde que comecei a usar creatina, meus treinos melhoraram 200%. Ganho de força visível em apenas 3 semanas!"</p>
+                    <div class="user-info">
+                        <div class="avatar">C</div>
+                        <div class="user-details">
+                            <h4>Carlos Silva</h4>
+                            <span data-i18n="test_1_r">Atleta de Crossfit</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text" data-i18n="test_2_t">"Recomendo creatina para todos os meus alunos. É o suplemento com melhor custo-benefício e resultados comprovados."</p>
+                    <div class="user-info">
+                        <div class="avatar">M</div>
+                        <div class="user-details">
+                            <h4>Marina Santos</h4>
+                            <span data-i18n="test_2_r">Personal Trainer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text" data-i18n="test_3_t">"A creatina é essencial na minha rotina. Recuperação mais rápida e ganhos consistentes de massa muscular."</p>
+                    <div class="user-info">
+                        <div class="avatar">J</div>
+                        <div class="user-details">
+                            <h4>João Ferreira</h4>
+                            <span data-i18n="test_3_r">Bodybuilder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq_title">Perguntas Frequentes</h2>
+            <p class="section-subtitle" data-i18n="faq_sub">Tire todas as suas dúvidas sobre creatina</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq_1_q">O que é creatina?</button>
+                    <div class="faq-answer"><p data-i18n="faq_1_a">É um composto de aminoácidos natural que fornece energia para os músculos, ideal para treinos de força e explosão.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq_2_q">Como tomar creatina?</button>
+                    <div class="faq-answer"><p data-i18n="faq_2_a">Recomenda-se ingerir de 3g a 5g todos os dias, preferencialmente junto com uma fonte de carboidratos para melhorar a absorção.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq_3_q">Quais os efeitos colaterais?</button>
+                    <div class="faq-answer"><p data-i18n="faq_3_a">Em pessoas saudáveis, não há efeitos colaterais comprovados. O mito de problemas renais já foi quebrado por inúmeros estudos científicos.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq_4_q">Quanto tempo para ver resultados?</button>
+                    <div class="faq-answer"><p data-i18n="faq_4_a">Os resultados de força e volumização muscular costumam aparecer entre 2 a 4 semanas de uso diário e consistente.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq_5_q">Preciso fazer pausa no uso?</button>
+                    <div class="faq-answer"><p data-i18n="faq_5_a">Não. A creatina é de uso contínuo e crônico. Interromper o uso apenas fará com que os estoques musculares voltem ao nível normal.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-i18n="faq_6_q">Qual tipo de creatina é melhor?</button>
+                    <div class="faq-answer"><p data-i18n="faq_6_a">A Creatina Monohidratada é a mais barata, a mais estudada e a que entrega os melhores resultados comprovados.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <div class="container">
+            <h2 data-i18n="cta_title">Pronto Para Transformar Seus Resultados?</h2>
+            <p data-i18n="cta_sub">Junte-se a milhares de atletas que já estão usando creatina para maximizar seus ganhos</p>
+            <a href="SEU_LINK_AMAZON" class="btn">
+                <span data-i18n="btn_cta_amazon">Comprar Agora na Amazon</span>
+                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path d="M20.5 4.5l-1-1c-.8-.8-2-.8-2.8 0l-1 1-1.4-1.4c-.4-.4-1-.4-1.4 0l-1.4 1.4-4.2-4.2c-.8-.8-2-.8-2.8 0l-1 1c-.8.8-.8 2 0 2.8l1 1-2.6 2.6c-.4.4-.4 1 0 1.4l1.4 1.4-1.4 1.4c-.4.4-.4 1 0 1.4l1.4 1.4-2.6 2.6c-.8.8-.8 2 0 2.8l1 1c.8.8 2 .8 2.8 0l1-1 4.2 4.2c.4.4 1 .4 1.4 0l1.4-1.4 1.4 1.4c.4.4 1 .4 1.4 0l1.4-1.4 2.6-2.6l1 1c.8.8 2 .8 2.8 0l1-1c.8-.8.8-2 0-2.8l-1-1 2.6-2.6c.4-.4.4-1 0-1.4l-1.4-1.4 1.4-1.4c.4-.4.4-1 0-1.4l-1.4-1.4 2.6-2.6c.7-.7.7-1.9-.1-2.7zm-14 14l-1.4 1.4c-.4.4-1 .4-1.4 0l-1-1c-.4-.4-.4-1 0-1.4l1.4-1.4 2.4 2.4zm11-11L8.3 16.7l-1-1L16.5 6.5l1 1z"/></svg>
+                    Creatina Fit
+                </div>
+                <p data-i18n="footer_desc">Seu parceiro para máxima performance e resultados excepcionais na academia.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="foot_links">Links Rápidos</h4>
+                <ul>
+                    <li><a href="#beneficios" data-i18n="nav_benefits">Benefícios</a></li>
+                    <li><a href="#sobre" data-i18n="nav_about">Sobre</a></li>
+                    <li><a href="#depoimentos" data-i18n="nav_test">Depoimentos</a></li>
+                    <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n="foot_info">Informações</h4>
+                <ul>
+                    <li><a href="#" data-i18n="foot_use">Como Usar</a></li>
+                    <li><a href="#" data-i18n="foot_study">Estudos Científicos</a></li>
+                    <li><a href="#" data-i18n="foot_res">Resultados</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer_copy">&copy; 2025 Creatina Fit. Todos os direitos reservados.</p>
+            <p class="disclaimer" data-i18n="footer_disc">Este site contém links de afiliados da Amazon. Podemos receber comissão por compras realizadas.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. TEMA CLARO/ESCURO ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+        const body = document.body;
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            themeToggleBtn.style.transform = "scale(0.8) rotate(15deg)";
+            setTimeout(() => { themeToggleBtn.style.transform = "scale(1) rotate(0deg)"; }, 200);
+
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                moonIcon.style.display = 'none'; sunIcon.style.display = 'block';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                moonIcon.style.display = 'block'; sunIcon.style.display = 'none';
+            }
+        });
+
+        // --- 2. FAQ SANFONA ---
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('active'); });
+                item.classList.toggle('active');
+            });
+        });
+
+        // --- 3. SISTEMA DE IDIOMAS (i18n) ---
+        const translations = {
+            pt: {
+                nav_benefits: "Benefícios", nav_about: "Sobre", nav_test: "Depoimentos", nav_faq: "FAQ", btn_buy_now: "Comprar Agora",
+                hero_title: "Maximize Seus Resultados com <span class='highlight'>Creatina</span>",
+                hero_desc: "O suplemento mais estudado e comprovado cientificamente para ganho de massa muscular, força e performance.",
+                feat_1: "100% Pura", feat_2: "Resultados Comprovados", feat_3: "Entrega Rápida",
+                btn_amazon: "Comprar na Amazon", btn_view_benefits: "Ver Benefícios", card_strength: "Aumento de Força",
+                sec_ben_title: "Benefícios da Creatina", sec_ben_sub: "Descubra como a creatina pode transformar seus treinos e resultados",
+                ben_1_t: "Ganho de Massa Muscular", ben_1_d: "A creatina aumenta a síntese de proteínas musculares, promovendo o crescimento e hipertrofia muscular de forma eficiente.",
+                ben_2_t: "Aumento da Força", ben_2_d: "Melhora significativa na força e potência muscular, permitindo treinos mais intensos e resultados superiores.",
+                ben_3_t: "Recuperação Rápida", ben_3_d: "Acelera a recuperação muscular pós-treino, reduzindo fadiga e permitindo treinar com mais frequência.",
+                ben_4_t: "Energia para Treino", ben_4_d: "Fornece energia ATP adicional para exercícios de alta intensidade, maximizando seu desempenho.",
+                ben_5_t: "Performance Aprimorada", ben_5_d: "Estudos comprovam melhora de até 15% no desempenho físico em exercícios de explosão e força.",
+                ben_6_t: "Saúde Cognitiva", ben_6_d: "Benefícios para função cerebral, memória e concentração, além dos ganhos físicos.",
+                about_title: "O Que É Creatina?",
+                about_p1: "A creatina é um aminoácido natural produzido pelo corpo humano e armazenado principalmente nos músculos. É fundamental para a produção de ATP (adenosina trifosfato), a principal fonte de energia celular.",
+                about_p2: "Mais de 1.000 estudos científicos comprovam a eficácia e segurança da creatina. É reconhecida por organizações como a International Society of Sports Nutrition como um dos suplementos mais eficazes para ganho de massa muscular e força.",
+                about_p3: "Ideal para praticantes de musculação, crossfit, atletas de alta performance e qualquer pessoa que busca melhorar seus resultados na academia.",
+                nutri_title: "Informações Nutricionais", nutri_portion: "Porção: 5g", nutri_h1: "Nutriente", nutri_h2: "Quantidade", nutri_v1: "Creatina Monohidratada", nutri_note: "** Valor diário não estabelecido",
+                btn_guarantee: "Garantir Meu Produto",
+                test_title: "O Que Nossos Clientes Dizem", test_sub: "Resultados reais de pessoas reais",
+                test_1_t: `"Desde que comecei a usar creatina, meus treinos melhoraram 200%. Ganho de força visível em apenas 3 semanas!"`, test_1_r: "Atleta de Crossfit",
+                test_2_t: `"Recomendo creatina para todos os meus alunos. É o suplemento com melhor custo-benefício e resultados comprovados."`, test_2_r: "Personal Trainer",
+                test_3_t: `"A creatina é essencial na minha rotina. Recuperação mais rápida e ganhos consistentes de massa muscular."`, test_3_r: "Bodybuilder",
+                faq_title: "Perguntas Frequentes", faq_sub: "Tire todas as suas dúvidas sobre creatina",
+                faq_1_q: "O que é creatina?", faq_1_a: "É um composto de aminoácidos natural que fornece energia para os músculos, ideal para treinos de força e explosão.",
+                faq_2_q: "Como tomar creatina?", faq_2_a: "Recomenda-se ingerir de 3g a 5g todos os dias, preferencialmente junto com uma fonte de carboidratos para melhorar a absorção.",
+                faq_3_q: "Quais os efeitos colaterais?", faq_3_a: "Em pessoas saudáveis, não há efeitos colaterais comprovados. O mito de problemas renais já foi quebrado por inúmeros estudos científicos.",
+                faq_4_q: "Quanto tempo para ver resultados?", faq_4_a: "Os resultados de força e volumização muscular costumam aparecer entre 2 a 4 semanas de uso diário e consistente.",
+                faq_5_q: "Preciso fazer pausa no uso?", faq_5_a: "Não. A creatina é de uso contínuo e crônico. Interromper o uso apenas fará com que os estoques musculares voltem ao nível normal.",
+                faq_6_q: "Qual tipo de creatina é melhor?", faq_6_a: "A Creatina Monohidratada é a mais barata, a mais estudada e a que entrega os melhores resultados comprovados.",
+                cta_title: "Pronto Para Transformar Seus Resultados?", cta_sub: "Junte-se a milhares de atletas que já estão usando creatina para maximizar seus ganhos", btn_cta_amazon: "Comprar Agora na Amazon",
+                footer_desc: "Seu parceiro para máxima performance e resultados excepcionais na academia.",
+                foot_links: "Links Rápidos", foot_info: "Informações", foot_use: "Como Usar", foot_study: "Estudos Científicos", foot_res: "Resultados",
+                footer_copy: "© 2025 Creatina Fit. Todos os direitos reservados.", footer_disc: "Este site contém links de afiliados da Amazon. Podemos receber comissão por compras realizadas."
+            },
+            en: {
+                nav_benefits: "Benefits", nav_about: "About", nav_test: "Testimonials", nav_faq: "FAQ", btn_buy_now: "Buy Now",
+                hero_title: "Maximize Your Results with <span class='highlight'>Creatine</span>",
+                hero_desc: "The most studied and scientifically proven supplement for muscle mass gain, strength, and performance.",
+                feat_1: "100% Pure", feat_2: "Proven Results", feat_3: "Fast Delivery",
+                btn_amazon: "Buy on Amazon", btn_view_benefits: "View Benefits", card_strength: "Strength Increase",
+                sec_ben_title: "Benefits of Creatine", sec_ben_sub: "Discover how creatine can transform your workouts and results",
+                ben_1_t: "Muscle Mass Gain", ben_1_d: "Creatine increases muscle protein synthesis, promoting muscle growth and hypertrophy efficiently.",
+                ben_2_t: "Strength Increase", ben_2_d: "Significant improvement in muscle strength and power, allowing for more intense workouts.",
+                ben_3_t: "Fast Recovery", ben_3_d: "Accelerates post-workout muscle recovery, reducing fatigue and allowing you to train more often.",
+                ben_4_t: "Workout Energy", ben_4_d: "Provides extra ATP energy for high-intensity exercises, maximizing your performance.",
+                ben_5_t: "Enhanced Performance", ben_5_d: "Studies prove an improvement of up to 15% in physical performance during strength exercises.",
+                ben_6_t: "Cognitive Health", ben_6_d: "Benefits for brain function, memory, and concentration, in addition to physical gains.",
+                about_title: "What Is Creatine?",
+                about_p1: "Creatine is a natural amino acid produced by the human body and stored mainly in muscles. It is essential for ATP (adenosine triphosphate) production, the main source of cellular energy.",
+                about_p2: "Over 1,000 scientific studies prove the efficacy and safety of creatine. It is recognized by the International Society of Sports Nutrition as one of the most effective supplements.",
+                about_p3: "Ideal for bodybuilders, crossfitters, high-performance athletes, and anyone looking to improve their gym results.",
+                nutri_title: "Nutritional Information", nutri_portion: "Serving: 5g", nutri_h1: "Nutrient", nutri_h2: "Amount", nutri_v1: "Creatine Monohydrate", nutri_note: "** Daily value not established",
+                btn_guarantee: "Secure My Product",
+                test_title: "What Our Customers Say", test_sub: "Real results from real people",
+                test_1_t: `"Since I started using creatine, my workouts improved 200%. Visible strength gain in just 3 weeks!"`, test_1_r: "Crossfit Athlete",
+                test_2_t: `"I recommend creatine to all my clients. It's the supplement with the best cost-benefit and proven results."`, test_2_r: "Personal Trainer",
+                test_3_t: `"Creatine is essential in my routine. Faster recovery and consistent muscle mass gains."`, test_3_r: "Bodybuilder",
+                faq_title: "Frequently Asked Questions", faq_sub: "Clear all your doubts about creatine",
+                faq_1_q: "What is creatine?", faq_1_a: "It's a natural amino acid compound that provides energy to muscles, ideal for strength and explosive workouts.",
+                faq_2_q: "How to take creatine?", faq_2_a: "It is recommended to take 3g to 5g every day, preferably with a carbohydrate source to improve absorption.",
+                faq_3_q: "What are the side effects?", faq_3_a: "In healthy people, there are no proven side effects. The kidney problem myth has been busted by scientific studies.",
+                faq_4_q: "How long to see results?", faq_4_a: "Strength and muscle volumization results usually appear between 2 to 4 weeks of consistent daily use.",
+                faq_5_q: "Do I need to pause the use?", faq_5_a: "No. Creatine is for continuous use. Stopping will only make muscle stores return to normal levels.",
+                faq_6_q: "Which type of creatine is best?", faq_6_a: "Creatine Monohydrate is the cheapest, most studied, and delivers the best proven results.",
+                cta_title: "Ready to Transform Your Results?", cta_sub: "Join thousands of athletes who are already using creatine to maximize their gains", btn_cta_amazon: "Buy Now on Amazon",
+                footer_desc: "Your partner for maximum performance and exceptional gym results.",
+                foot_links: "Quick Links", foot_info: "Information", foot_use: "How to Use", foot_study: "Scientific Studies", foot_res: "Results",
+                footer_copy: "© 2025 Creatina Fit. All rights reserved.", footer_disc: "This site contains Amazon affiliate links. We may receive a commission for purchases made."
+            },
+            es: {
+                nav_benefits: "Beneficios", nav_about: "Sobre", nav_test: "Testimonios", nav_faq: "FAQ", btn_buy_now: "Comprar Ahora",
+                hero_title: "Maximiza Tus Resultados con <span class='highlight'>Creatina</span>",
+                hero_desc: "El suplemento más estudiado y comprobado científicamente para la ganancia de masa muscular, fuerza y rendimiento.",
+                feat_1: "100% Pura", feat_2: "Resultados Comprobados", feat_3: "Entrega Rápida",
+                btn_amazon: "Comprar en Amazon", btn_view_benefits: "Ver Beneficios", card_strength: "Aumento de Fuerza",
+                sec_ben_title: "Beneficios de la Creatina", sec_ben_sub: "Descubre cómo la creatina puede transformar tus entrenamientos y resultados",
+                ben_1_t: "Ganancia de Masa Muscular", ben_1_d: "La creatina aumenta la síntesis de proteínas musculares, promoviendo el crecimiento de manera eficiente.",
+                ben_2_t: "Aumento de Fuerza", ben_2_d: "Mejora significativa en la fuerza y potencia muscular, permitiendo entrenamientos más intensos.",
+                ben_3_t: "Recuperación Rápida", ben_3_d: "Acelera la recuperación muscular post-entrenamiento, reduciendo la fatiga y permitiendo entrenar más.",
+                ben_4_t: "Energía para Entrenar", ben_4_d: "Proporciona energía ATP adicional para ejercicios de alta intensidad, maximizando el rendimiento.",
+                ben_5_t: "Rendimiento Mejorado", ben_5_d: "Los estudios prueban una mejora de hasta el 15% en el rendimiento físico en ejercicios de fuerza.",
+                ben_6_t: "Salud Cognitiva", ben_6_d: "Beneficios para la función cerebral, memoria y concentración, además de las ganancias físicas.",
+                about_title: "¿Qué es la Creatina?",
+                about_p1: "La creatina es un aminoácido natural producido por el cuerpo humano y almacenado principalmente en los músculos. Es esencial para la producción de ATP.",
+                about_p2: "Más de 1.000 estudios científicos prueban la eficacia y seguridad de la creatina. Es reconocida como uno de los suplementos más efectivos.",
+                about_p3: "Ideal para practicantes de musculación, crossfit, atletas de alto rendimiento y cualquiera que busque mejorar sus resultados.",
+                nutri_title: "Información Nutricional", nutri_portion: "Porción: 5g", nutri_h1: "Nutriente", nutri_h2: "Cantidad", nutri_v1: "Creatina Monohidratada", nutri_note: "** Valor diario no establecido",
+                btn_guarantee: "Asegurar Mi Producto",
+                test_title: "Lo Que Dicen Nuestros Clientes", test_sub: "Resultados reales de personas reales",
+                test_1_t: `"Desde que empecé a usar creatina, mis entrenamientos mejoraron 200%. ¡Ganancia de fuerza visible en 3 semanas!"`, test_1_r: "Atleta de Crossfit",
+                test_2_t: `"Recomiendo creatina a todos mis alumnos. Es el suplemento con mejor costo-beneficio."`, test_2_r: "Entrenadora Personal",
+                test_3_t: `"La creatina es esencial en mi rutina. Recuperación más rápida y ganancias musculares consistentes."`, test_3_r: "Fisicoculturista",
+                faq_title: "Preguntas Frecuentes", faq_sub: "Resuelve todas tus dudas sobre la creatina",
+                faq_1_q: "¿Qué es la creatina?", faq_1_a: "Es un compuesto natural que proporciona energía a los músculos, ideal para entrenamientos de fuerza.",
+                faq_2_q: "¿Cómo tomar creatina?", faq_2_a: "Se recomienda ingerir de 3g a 5g diarios, preferiblemente junto con carbohidratos para mejorar la absorción.",
+                faq_3_q: "¿Cuáles son los efectos secundarios?", faq_3_a: "En personas sanas no hay efectos secundarios comprobados. El mito del daño renal ha sido desmentido.",
+                faq_4_q: "¿Cuánto tiempo para ver resultados?", faq_4_a: "Los resultados de fuerza y volumen muscular suelen aparecer entre 2 y 4 semanas de uso constante.",
+                faq_5_q: "¿Necesito hacer pausa en el uso?", faq_5_a: "No. La creatina es de uso continuo. Interrumpirlo solo devolverá tus niveles musculares a la normalidad.",
+                faq_6_q: "¿Qué tipo de creatina es mejor?", faq_6_a: "La Creatina Monohidratada es la más barata, la más estudiada y la que ofrece los mejores resultados.",
+                cta_title: "¿Listo Para Transformar Tus Resultados?", cta_sub: "Únete a miles de atletas que ya están usando creatina para maximizar sus ganancias", btn_cta_amazon: "Comprar Ahora en Amazon",
+                footer_desc: "Tu compañero para el máximo rendimiento y resultados excepcionales en el gimnasio.",
+                foot_links: "Enlaces Rápidos", foot_info: "Información", foot_use: "Cómo Usar", foot_study: "Estudios Científicos", foot_res: "Resultados",
+                footer_copy: "© 2025 Creatina Fit. Todos los derechos reservados.", footer_disc: "Este sitio contiene enlaces de afiliados de Amazon. Podemos recibir una comisión por las compras."
+            }
+        };
+
+        const langBtn = document.getElementById('lang-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const langOptions = document.querySelectorAll('.lang-menu button');
+
+        // Abrir/fechar dropdown
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle('show');
+        });
+
+        // Fechar se clicar fora
+        document.addEventListener('click', (e) => {
+            if (!langMenu.contains(e.target)) {
+                langMenu.classList.remove('show');
+            }
+        });
+
+        // Trocar idioma
+        langOptions.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                
+                // Mudar HTML da página (lang)
+                document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+                // Trocar textos
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key]; // innerHTML mantém a tag do span highlight
+                    }
+                });
+
+                langMenu.classList.remove('show');
+            });
+        });
+
+    </script>
+</body>
+</html>
